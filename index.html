@@ -1,343 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Fabiano Conrado</title>
-    <style>
-        :root {
-            --primary-color: #004b87;
-            --secondary-color: #f4f4f9;
-            --text-dark: #333;
-            --text-light: #666;
-            --white: #ffffff;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #e9ecef;
-            display: flex;
-            justify-content: center;
-            padding: 40px 0;
-            color: var(--text-dark);
-        }
-
-        .resume-container {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            background: var(--white);
-            width: 100%;
-            max-width: 1000px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 30px;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.3);
-            object-fit: cover;
-            margin-bottom: 20px;
-            background-color: #fff;
-        }
-
-        .sidebar h1 {
-            font-size: 24px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .sidebar h2 {
-            font-size: 14px;
-            font-weight: 400;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .section-title-sidebar {
-            text-align: left;
-            font-size: 16px;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding-bottom: 5px;
-            margin-bottom: 15px;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-
-        .contact-info {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .contact-item {
-            margin-bottom: 15px;
-            font-size: 13px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            word-break: break-word;
-        }
-
-        .contact-item a {
-            color: var(--white);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .contact-item a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-
-        .skills-list, .education-list {
-            text-align: left;
-            list-style: none;
-        }
-
-        .skills-list li {
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 8px;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 13px;
-        }
-
-        .education-item {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-        
-        .education-degree {
-            font-weight: bold;
-            font-size: 14px;
-            display: block;
-        }
-        
-        .education-school {
-            font-size: 12px;
-            opacity: 0.8;
-            display: block;
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 40px;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 20px;
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-            margin-top: 30px;
-            font-weight: bold;
-        }
-        
-        .section-title:first-child {
-            margin-top: 0;
-        }
-
-        .summary-text {
-            color: var(--text-dark);
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-align: justify;
-        }
-
-        .job-item {
-            margin-bottom: 25px;
-            border-left: 3px solid #ddd;
-            padding-left: 20px;
-        }
-
-        .job-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: var(--text-dark);
-        }
-
-        .job-company {
-            font-size: 15px;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .job-date {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-
-        .job-desc {
-            font-size: 14px;
-            color: var(--text-dark);
-            line-height: 1.5;
-        }
-        
-        .job-desc ul {
-            margin-left: 20px;
-            margin-top: 5px;
-        }
-
-        .job-desc li {
-            margin-bottom: 5px;
-        }
-
-        @media (max-width: 768px) {
-            .resume-container { grid-template-columns: 1fr; }
-            .sidebar { text-align: center; }
-            .contact-info, .section-title-sidebar, .skills-list, .education-item { text-align: center; }
-            .contact-item { justify-content: center; }
-            .job-item { border-left: none; padding-left: 0; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-        }
-        
-        @media print {
-            body { padding: 0; background: white; }
-            .resume-container { box-shadow: none; width: 100%; max-width: 100%; }
-            a { text-decoration: none; color: inherit; }
-        }
-    </style>
+    <title>Fabiano Conrado | Senior Software Engineer</title>
+    <meta name="description"
+        content="Portfolio of Fabiano Conrado - Senior Software Engineer and Database Specialist focusing on high-performance solutions.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-
-    <div class="resume-container">
-        <aside class="sidebar">
-            <img src="foto1.png" alt="Fabiano Conrado Profile Picture" class="profile-img">
-            
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="profile-img-container">
+                <div class="profile-img">
+                    <img src="./assets/profile.jpg" alt="Foto de Fabiano Conrado">
+                </div>
+            </div>
             <h1>Fabiano Conrado</h1>
-            <h2>Software Engineer</h2>
+            <div class="title">Senior Software Engineer & Database Specialist</div>
 
-            <div class="section-title-sidebar">Contact</div>
             <div class="contact-info">
-                <div class="contact-item">
-                    <span>📧</span> 
-                    <a href="mailto:conrado.talent@gmail.com">conrado.talent@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <span>📍</span> Maceió, Alagoas, Brazil
-                </div>
-                <div class="contact-item">
-                    <span>🔗</span> 
-                    <a href="https://www.linkedin.com/in/fabiano-conrado-19954b37/" target="_blank">LinkedIn Profile</a>
+                <a href="mailto:conrado.talent@gmail.com" class="contact-badge" title="Email">
+                    <i class="fa-solid fa-envelope"></i> conrado.talent@gmail.com
+                </a>
+                <span class="contact-badge" title="Location">
+                    <i class="fa-solid fa-location-dot"></i> Maceió, Alagoas, Brazil
+                </span>
+                <a href="https://www.linkedin.com/in/fabiano-conrado-19954b37/" class="contact-badge" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn Profile
+                </a>
+                <a href="https://github.com/fsconrado" class="contact-badge" title="GitHub">
+                    <i class="fa-brands fa-github"></i> GitHub
+                </a>
+            </div>
+        </header>
+
+        <!-- Personal Story / Biography -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-book-open"></i> Personal Story
+            </div>
+            <div class="content-block">
+                <div class="card">
+                    <p>I was born in <strong>Joaquim Gomes</strong>, in the countryside of Alagoas, but I was raised in
+                        <strong>Maceió</strong>, the city of my heart. My journey is defined by resilience and
+                        continuous learning. Despite facing early challenges, including physical disability and the
+                        absence of my biological parents, I found a father and unconditional love in God.</p>
+
+                    <p>I have always been driven by work and art: I sold popsicles at age 12, joined a church band at
+                        14, and by 15, I was already directing and narrating my first school play. It was also during my
+                        youth that I met my beloved wife, Rose, the mother of my greatest treasures: Felip (6) and
+                        Elenna (1).</p>
+
+                    <p>In computing, I discovered a transformative power. Technology didn't just present me with a new
+                        horizon; it drastically reduced the physical barriers imposed by a shortening in my left leg,
+                        proving that knowledge knows no bounds.</p>
+
+                    <p>Today, my mission is clear: <strong>I strive to continuously evolve and contribute so that
+                            technology makes the world a more accessible and human place for everyone.</strong></p>
                 </div>
             </div>
+        </section>
 
-            <div class="section-title-sidebar">Education</div>
-            <ul class="education-list">
-                <li class="education-item">
-                    <span class="education-degree">M.Sc. in Informatics</span>
-                    <span class="education-school">UFAL (2020 - 2022)</span>
-                </li>
-                <li class="education-item">
-                    <span class="education-degree">Postgrad in Systems Development</span>
-                    <span class="education-school">UFRN (2016 - 2017)</span>
-                </li>
-                <li class="education-item">
-                    <span class="education-degree">Associate Degree in Systems Analysis</span>
-                    <span class="education-school">UNCISAL (2007 - 2009)</span>
-                </li>
-            </ul>
-
-            <div class="section-title-sidebar">Skills</div>
-            <ul class="skills-list">
-                <li><strong>Oracle / PostgreSQL / MySQL</strong></li>
-                <li><strong>ETL & Data Migration</strong></li>
-                <li>Advanced SQL & Tuning</li>
-                <li>Ruby on Rails / Django</li>
-                <li>Python / Java / PHP</li>
-                <li>Docker / GitLab / CI/CD</li>
-                <li>BI (Pentaho) & Analytics</li>
-                <li>Scrum / Agile Methodologies</li>
-            </ul>
-        </aside>
-
-        <main class="main-content">
-            
-            <div class="section-title">Professional Summary</div>
-            <p class="summary-text">
-                Senior Software Engineer and <strong>Database Specialist</strong> with over 13 years of experience, primarily at the Federal University of Alagoas (UFAL). Expert in Full-stack development (Rails, Django, Java) combined with strong capabilities in <strong>Data Engineering and ETL processes</strong>. Proven track record in designing high-performance database solutions, query optimization, and migrating legacy data systems. Strong academic background (M.Sc. in Informatics) focused on delivering scalable and secure architectures.
-            </p>
-
-            <div class="section-title">Professional Experience</div>
-
-            <div class="job-item">
-                <div class="job-title">Senior Software Engineer</div>
-                <div class="job-company">Federal University of Alagoas (UFAL)</div>
-                <div class="job-date">May 2012 - Present | Maceió, AL</div>
-                <div class="job-desc">
-                    <ul>
-                        <li>Development of critical full-stack systems using Ruby on Rails, Django, and Java.</li>
-                        <li><strong>Database Leadership:</strong> Management of Oracle and PostgreSQL environments, focusing on schema design and performance tuning.</li>
-                        <li>Designed and executed robust **ETL pipelines** for large-scale data migration and integration between legacy and modern systems.</li>
-                        <li>Implementation of automated deployment pipelines using Docker and GitLab.</li>
-                    </ul>
+        <!-- Professional Summary -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-id-card"></i> Professional Summary
+            </div>
+            <div class="content-block">
+                <div class="card">
+                    <p>Senior Software Engineer and Database Specialist with over 13 years of experience, primarily at
+                        the <strong>Federal University of Alagoas (UFAL)</strong>. Expert in Full-stack development
+                        (Rails, Django, Java) combined with strong capabilities in Data Engineering and ETL processes.
+                    </p>
+                    <p>Proven track record in designing high-performance database solutions, query optimization, and
+                        migrating legacy data systems. Strong academic background (M.Sc. in Informatics) focused on
+                        delivering scalable and secure architectures.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="job-item">
-                <div class="job-title">Senior Software Engineer</div>
-                <div class="job-company">NEES - Center of Excellence in Social Technologies</div>
-                <div class="job-date">Sep 2022 - Jun 2024</div>
-                <div class="job-desc">
-                    Focused on Python/Django development and containerized microservices architecture. Implemented efficient data handling strategies within CI/CD pipelines.
+        <!-- Professional Experience -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-briefcase"></i> Experience
+            </div>
+            <div class="content-block">
+                <div class="card">
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Senior Software Engineer</div>
+                            <div class="timeline-date">May 2012 - Present</div>
+                        </div>
+                        <div class="timeline-company">Federal University of Alagoas (UFAL) | Maceió, AL</div>
+                        <ul>
+                            <li>Development of critical full-stack systems using Ruby on Rails, Django, and Java.</li>
+                            <li><strong>Database Leadership:</strong> Management of Oracle and PostgreSQL environments,
+                                focusing on schema design and performance tuning.</li>
+                            <li>Designed and executed robust <strong>ETL pipelines</strong> for large-scale data
+                                migration and integration between legacy and modern systems.</li>
+                            <li>Implementation of automated deployment pipelines using Docker and GitLab.</li>
+                        </ul>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid var(--divider); margin: 2rem 0;">
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Senior Software Engineer</div>
+                            <div class="timeline-date">Sep 2022 - Jun 2024</div>
+                        </div>
+                        <div class="timeline-company">NEES - Center of Excellence in Social Technologies</div>
+                        <ul>
+                            <li>Focused on Python/Django development and containerized microservices architecture.</li>
+                            <li>Implemented efficient data handling strategies within CI/CD pipelines.</li>
+                        </ul>
+                    </div>
+
+                    <hr style="border: none; border-top: 1px solid var(--divider); margin: 2rem 0;">
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Substitute Professor</div>
+                            <div class="timeline-date">Mar 2018 - Feb 2020</div>
+                        </div>
+                        <div class="timeline-company">Federal Institute of Alagoas (IFAL)</div>
+                        <ul>
+                            <li>Taught courses on Mobile Programming (Android/Flutter) and Advanced Database Systems.
+                            </li>
+                            <li>Mentored students on SQL best practices and advanced data modeling.</li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
+        </section>
 
-            <div class="job-item">
-                <div class="job-title">Substitute Professor</div>
-                <div class="job-company">Federal Institute of Alagoas (IFAL)</div>
-                <div class="job-date">Mar 2018 - Feb 2020</div>
-                <div class="job-desc">
-                    Taught courses on Mobile Programming (Android/Flutter) and <strong>Advanced Database Systems</strong>, mentoring students on SQL best practices and data modeling.
+        <!-- Core Skills -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-layer-group"></i> Core Skills
+            </div>
+            <div class="content-block">
+                <div class="card" style="padding: 1.5rem 2rem;">
+                    <div class="skills-container">
+                        <span class="skill-tag accent"><i class="fa-solid fa-database"></i> Oracle / PostgreSQL /
+                            MySQL</span>
+                        <span class="skill-tag accent"><i class="fa-solid fa-network-wired"></i> ETL & Data
+                            Migration</span>
+                        <span class="skill-tag accent"><i class="fa-solid fa-magnifying-glass-chart"></i> Advanced SQL &
+                            Tuning</span>
+                        <span class="skill-tag"><i class="fa-brands fa-python"></i> Python / Django</span>
+                        <span class="skill-tag"><i class="fa-solid fa-gem"></i> Ruby on Rails</span>
+                        <span class="skill-tag"><i class="fa-brands fa-java"></i> Java / PHP</span>
+                        <span class="skill-tag"><i class="fa-brands fa-docker"></i> Docker / GitLab / CI/CD</span>
+                        <span class="skill-tag"><i class="fa-solid fa-chart-pie"></i> BI (Pentaho) & Analytics</span>
+                        <span class="skill-tag"><i class="fa-solid fa-code-branch"></i> Scrum / Agile
+                            Methodologies</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="job-item">
-                <div class="job-title">Senior Software Architect</div>
-                <div class="job-company">NEES (Specific Project)</div>
-                <div class="job-date">Mar 2023 - Dec 2023</div>
-                <div class="job-desc">
-                    Defined software architecture and data persistence layers for large-scale educational projects.
+        <!-- Education -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-graduation-cap"></i> Education
+            </div>
+            <div class="content-block">
+                <div class="card">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-role">M.Sc. in Informatics</div>
+                            <div class="timeline-date">2020 - 2022</div>
+                        </div>
+                        <div class="timeline-company">Federal University of Alagoas (UFAL)</div>
+                    </div>
+
+                    <div class="timeline-item" style="margin-top: 1.5rem;">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Postgraduate in Systems Development</div>
+                            <div class="timeline-date">2016 - 2017</div>
+                        </div>
+                        <div class="timeline-company">Federal University of Rio Grande do Norte (UFRN)</div>
+                    </div>
+
+                    <div class="timeline-item" style="margin-top: 1.5rem;">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Associate Degree in Systems Analysis</div>
+                            <div class="timeline-date">2007 - 2009</div>
+                        </div>
+                        <div class="timeline-company">UNCISAL</div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="job-item">
-                <div class="job-title">Other Relevant Experience</div>
-                <div class="job-desc">
-                    <strong>CPSoftware:</strong> Scientific Researcher (2020)<br>
-                    <strong>EASY Lab:</strong> Development Engineer (2020-2021)<br>
-                    <strong>UMJ:</strong> University Professor (2012)<br>
-                    <strong>Senac/Microlins:</strong> Technology Instructor (2005-2008)
+        <!-- Certifications, Publications & Other -->
+        <section>
+            <div class="section-title">
+                <i class="fa-solid fa-certificate"></i> Certifications & More
+            </div>
+            <div class="content-block">
+                <div class="card">
+                    <div class="timeline-item">
+                        <div class="timeline-role" style="font-size: 1.1rem; margin-bottom: 0.5rem;"><i
+                                class="fa-solid fa-award"></i> Certifications</div>
+                        <p style="margin-bottom: 1.5rem;">HCIA-5G Course, PL/SQL Specialist, Power BI Intro, Docker
+                            Masterclass.</p>
+
+                        <div class="timeline-role" style="font-size: 1.1rem; margin-bottom: 0.5rem;"><i
+                                class="fa-solid fa-book-journal-whills"></i> Publications</div>
+                        <p style="margin-bottom: 1.5rem;">Technical Framework for Registration Validation and
+                            Accessibility in Systems.</p>
+
+                        <div class="timeline-role" style="font-size: 1.1rem; margin-bottom: 0.5rem;"><i
+                                class="fa-solid fa-clock-rotate-left"></i> Other Relevant Experience</div>
+                        <ul>
+                            <li><strong>Senior Software Architect</strong>, NEES (Specific Project) | Mar 2023 - Dec
+                                2023</li>
+                            <li><strong>Scientific Researcher</strong>, CPSoftware | 2020</li>
+                            <li><strong>Development Engineer</strong>, EASY Lab | 2020 - 2021</li>
+                            <li><strong>University Professor</strong>, UMJ | 2012</li>
+                            <li><strong>Technology Instructor</strong>, Senac/Microlins | 2005 - 2008</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="section-title">Certifications & Publications</div>
-            <p class="summary-text" style="font-size: 14px;">
-                <strong>Certifications:</strong> HCIA-5G Course, <strong>PL/SQL Specialist</strong>, Power BI Intro, Docker Masterclass.<br>
-                <strong>Publications:</strong> Technical Framework for Registration Validation and Accessibility in Systems.
-            </p>
 
-        </main>
+
+        <footer>
+            <p>&copy; 2026 Fabiano Conrado. Developed with profound dedication to create impact.</p>
+        </footer>
     </div>
-
 </body>
+
 </html>
