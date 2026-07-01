@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Prática - Módulo 7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient-1: #e0e7ff;
+            --bg-gradient-2: #ede9fe;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --card-bg: #ffffff;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --border: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .app-container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            padding: 30px 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background-color: var(--border);
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 15px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover:not(.disabled) {
+            border-color: var(--primary);
+            background-color: #f8fafc;
+            transform: translateX(5px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+        }
+
+        .option.correct {
+            border-color: var(--success);
+            background-color: var(--success-light);
+            color: #065f46;
+        }
+
+        .option.wrong {
+            border-color: var(--danger);
+            background-color: var(--danger-light);
+            color: #991b1b;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .feedback-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-box h4 {
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feedback-box.success {
+            background-color: var(--success-light);
+            border: 1px solid var(--success);
+            color: #065f46;
+        }
+
+        .feedback-box.error {
+            background-color: var(--danger-light);
+            border: 1px solid var(--danger);
+            color: #991b1b;
+        }
+
+        .controls {
+            margin-top: auto;
+            padding-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Tela de Resultado */
+        .result-container {
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0%, #e5e7eb 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: "";
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+        }
+
+        .score-text {
+            position: relative;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+        }
+
+        .start-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="header">
+        <h1>Avaliação Prática - Módulo 7</h1>
+        <p>Entusiasmo para proclamar a Palavra de Deus | Facilitador: Fabiano Conrado</p>
+    </div>
+
+    <div class="content">
+        <div id="startScreen" class="screen active text-center">
+            <div class="start-icon">📖</div>
+            <h2 style="margin-bottom: 15px;">Bem-vindo à Avaliação</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">
+                Esta avaliação contém 4 questões valendo 2,5 pontos cada.<br>
+                Responda com atenção. O gabarito e os comentários serão exibidos a cada resposta.
+            </p>
+            <button class="btn-primary" onclick="startQuiz()">Iniciar Avaliação</button>
+        </div>
+
+        <div id="quizScreen" class="screen">
+            <div id="questionNumber" style="color: var(--primary); font-weight: 600; margin-bottom: 10px;">Questão 1 de 4</div>
+            <div class="question-text" id="questionText"></div>
+            <div class="options" id="optionsContainer"></div>
+            
+            <div id="feedbackBox" class="feedback-box">
+                <h4 id="feedbackTitle"></h4>
+                <p id="feedbackText"></p>
+            </div>
+
+            <div class="controls">
+                <button id="actionBtn" class="btn-primary" disabled onclick="handleAction()">Confirmar Resposta</button>
+            </div>
+        </div>
+
+        <div id="resultScreen" class="screen result-container">
+            <h2>Avaliação Concluída!</h2>
+            <div style="margin: 30px 0;">
+                <div class="score-circle" id="scoreCircle">
+                    <div class="score-text" id="finalScore">0.0</div>
+                </div>
+            </div>
+            <p class="result-message" id="resultMessage"></p>
+            <button class="btn-primary" onclick="location.reload()">Refazer Avaliação</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        {
+            question: "Segundo C. H. Spurgeon, o objetivo principal e inegociável de todo pregador ou mestre ao preparar a sua mensagem deve ser focado em um tema central. Ao escolher um texto bíblico para pregar, o que Spurgeon costumava fazer?",
+            options: [
+                "Aplicar as filosofias e a metafísica modernas para atualizar as Escrituras aos anseios do mundo.",
+                "Traçar uma 'linha reta' de qualquer texto bíblico diretamente até a cruz de Jesus Cristo.",
+                "Embelezar a Palavra de Deus e o evangelho para que soassem mais agradáveis aos ouvidos eruditos.",
+                "Escolher o texto que causasse mais conforto imediato aos fiéis e evitasse o tema do arrependimento.",
+                "Basear sua pregação exclusivamente nas experiências pessoais ocorridas na sua semana."
+            ],
+            correctIndex: 1, // B
+            justification: "A essência da pregação de Spurgeon é pregar a Cristo e o evangelho puro; ele afirmava traçar uma 'linha reta até a cruz'."
+        },
+        {
+            question: "Spurgeon frequentemente instruía os alunos de seu Colégio de Pastores sobre as bases cruciais para a pregação eficaz. Quais são as duas fontes essenciais das quais todo pregador e líder deve extrair sua capacitação e ensino, segundo o autor?",
+            options: [
+                "O Espírito Santo (como Guia) e as Sagradas Escrituras (como provisão inexaurível).",
+                "A autoconfiança no púlpito e o conhecimento aprofundado em debates seculares.",
+                "Os comentários bíblicos de autores famosos e os métodos de oratória clássica.",
+                "As fábulas morais contemporâneas e a cultura iminente da época.",
+                "A tradição puritana e as revelações desvinculadas dos preceitos bíblicos centrais."
+            ],
+            correctIndex: 0, // A
+            justification: "O autor pontua enfaticamente duas fontes para uma pregação eficaz: o Espírito Santo (como Mestre) e a Bíblia."
+        },
+        {
+            question: "Avalie as duas asserções a respeito do preparo ministerial e a relação proposta entre elas:<br><br>I. O ministro deve preparar o seu sermão laboriosamente como se tudo dependesse dele.<br>PORQUE<br>II. Deve também orar e confiar no Espírito Santo, sabendo que somente Ele reveste a Palavra com energia, e sem Sua cooperação, não há efeito transformador.",
+            options: [
+                "As asserções I e II são verdadeiras, e a II é uma justificativa correta da I.",
+                "As asserções I e II são verdadeiras, mas a II NÃO é uma justificativa correta da I.",
+                "A asserção I é verdadeira, mas a asserção II é falsa.",
+                "A asserção I é falsa, mas a asserção II é verdadeira.",
+                "As asserções I e II são integralmente falsas."
+            ],
+            correctIndex: 0, // A
+            justification: "Spurgeon ensina a conjugar 100% de preparo humano intensivo com 100% de dependência do Espírito para gerar resultados."
+        },
+        {
+            question: "Sobre as 'características de uma mensagem eficaz' amplamente ensinadas por Spurgeon, é correto afirmar que os sermões devem ser:",
+            options: [
+                "Carregados de vocabulário rebuscado para elevar o status intelectual do pregador.",
+                "Secos e metódicos, pois o objetivo do pregador não é ser interessante ao ouvinte.",
+                "Focados em nulidades e repetições longas para preencher o tempo de culto.",
+                "Feitos com clareza, doutrina substanciosa e aplicados de forma prática às necessidades.",
+                "Desconectados das necessidades da igreja, focando estritamente em história teológica."
+            ],
+            correctIndex: 3, // D
+            justification: "Spurgeon combatia pregações vazias, defendendo firmemente a simplicidade e a aplicação prática da verdade bíblica."
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedOptionIndex = null;
+    let isAnswerConfirmed = false;
+
+    // Elementos da DOM
+    const startScreen = document.getElementById('startScreen');
+    const quizScreen = document.getElementById('quizScreen');
+    const resultScreen = document.getElementById('resultScreen');
+    const progressBar = document.getElementById('progressBar');
+    const questionNumber = document.getElementById('questionNumber');
+    const questionText = document.getElementById('questionText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const actionBtn = document.getElementById('actionBtn');
+    const feedbackBox = document.getElementById('feedbackBox');
+    const feedbackTitle = document.getElementById('feedbackTitle');
+    const feedbackText = document.getElementById('feedbackText');
+
+    const letters = ['A', 'B', 'C', 'D', 'E'];
+
+    function startQuiz() {
+        startScreen.classList.remove('active');
+        quizScreen.classList.add('active');
+        loadQuestion();
+        updateProgress();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        questionNumber.textContent = `Questão ${currentQuestion + 1} de ${quizData.length}`;
+        questionText.innerHTML = q.question;
+        
+        optionsContainer.innerHTML = '';
+        selectedOptionIndex = null;
+        isAnswerConfirmed = false;
+        
+        feedbackBox.style.display = 'none';
+        feedbackBox.className = 'feedback-box';
+        
+        actionBtn.textContent = 'Confirmar Resposta';
+        actionBtn.disabled = true;
+
+        q.options.forEach((opt, index) => {
+            const div = document.createElement('div');
+            div.className = 'option';
+            div.innerHTML = `<strong>${letters[index]})</strong>&nbsp; ${opt}`;
+            div.onclick = () => selectOption(index, div);
+            optionsContainer.appendChild(div);
+        });
+    }
+
+    function selectOption(index, element) {
+        if (isAnswerConfirmed) return; // Trava se já confirmou
+
+        // Remove seleção anterior
+        document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+        
+        // Adiciona nova seleção
+        element.classList.add('selected');
+        selectedOptionIndex = index;
+        actionBtn.disabled = false;
+    }
+
+    function handleAction() {
+        if (!isAnswerConfirmed) {
+            confirmAnswer();
+        } else {
+            nextQuestion();
+        }
+    }
+
+    function confirmAnswer() {
+        isAnswerConfirmed = true;
+        const q = quizData[currentQuestion];
+        const optionsEls = document.querySelectorAll('.option');
+        
+        // Desabilita cliques
+        optionsEls.forEach(el => el.classList.add('disabled'));
+
+        const isCorrect = selectedOptionIndex === q.correctIndex;
+
+        // Estiliza as opções
+        optionsEls[q.correctIndex].classList.add('correct');
+        if (!isCorrect) {
+            optionsEls[selectedOptionIndex].classList.add('wrong');
+        } else {
+            score += 2.5; // Cada questão vale 2.5
+        }
+
+        // Mostra Feedback
+        feedbackBox.style.display = 'block';
+        if (isCorrect) {
+            feedbackBox.classList.add('success');
+            feedbackTitle.innerHTML = '✨ Resposta Correta!';
+        } else {
+            feedbackBox.classList.add('error');
+            feedbackTitle.innerHTML = `❌ Incorreto. A alternativa correta é a letra ${letters[q.correctIndex]}.`;
+        }
+        feedbackText.innerHTML = `<strong>Comentário:</strong> ${q.justification}`;
+
+        // Muda botão para próxima questão
+        if (currentQuestion < quizData.length - 1) {
+            actionBtn.textContent = 'Próxima Questão ➔';
+        } else {
+            actionBtn.textContent = 'Ver Resultado Final 🏆';
+        }
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+            updateProgress();
+        } else {
+            showResult();
+        }
+    }
+
+    function updateProgress() {
+        const progress = (currentQuestion / quizData.length) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+
+    function showResult() {
+        quizScreen.classList.remove('active');
+        resultScreen.classList.add('active');
+        progressBar.style.width = '100%';
+
+        const finalScoreText = score.toFixed(1).replace('.', ',');
+        document.getElementById('finalScore').textContent = finalScoreText;
+
+        // Animação do círculo de progresso
+        const percentage = (score / 10) * 100;
+        document.getElementById('scoreCircle').style.background = `conic-gradient(var(--primary) ${percentage}%, #e5e7eb ${percentage}%)`;
+
+        const msgElement = document.getElementById('resultMessage');
+        if (score === 10) {
+            msgElement.innerHTML = "Excelente! Você demonstrou total domínio sobre o módulo.";
+        } else if (score >= 7) {
+            msgElement.innerHTML = "Muito bom! Você absorveu bem os conceitos ensinados.";
+        } else {
+            msgElement.innerHTML = "Continue estudando! Recomendamos rever os conceitos do Módulo 7.";
+        }
+    }
+</script>
+
+</body>
+</html>
