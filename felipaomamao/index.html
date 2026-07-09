@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamão do Felipão | Brand Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        :root {
+            --mamao-orange: #ff8c42;
+            --mamao-light: #fff5eb;
+            --mamao-green: #4a7c44;
+            --mamao-dark: #2d1b0d;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--mamao-light);
+            color: var(--mamao-dark);
+        }
+
+        .font-brand { font-family: 'Playfair Display', serif; }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 140, 66, 0.2);
+        }
+
+        .tab-active {
+            border-bottom: 4px solid var(--mamao-orange);
+            color: var(--mamao-orange);
+        }
+
+        .product-gradient {
+            background: linear-gradient(135deg, #ff8c42 0%, #e67e22 100%);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-anim { animation: float 3s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <nav class="sticky top-0 z-50 bg-white shadow-sm border-b border-orange-100">
+        <div class="max-w-6xl mx-auto px-4 h-20 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white font-bold text-xl">F</div>
+                <span class="text-xl font-bold font-brand tracking-tight">Mamão do <span class="text-orange-500">Felipão</span></span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-medium">
+                <button onclick="showSection('identity')" class="nav-btn tab-active" id="btn-identity">A Identidade</button>
+                <button onclick="showSection('product')" class="nav-btn" id="btn-product">O Produto</button>
+                <button onclick="showSection('market')" class="nav-btn" id="btn-market">Mercado</button>
+            </div>
+            <button class="bg-green-700 text-white px-6 py-2 rounded-full hover:bg-green-800 transition">Quero Revender</button>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        
+        <section class="mb-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-brand mb-4">Sabor que vem do Sorriso.</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                Transformamos a energia contagiante do Felipão em uma linha de doces artesanais que preserva a tradição mineira com um toque moderno e carinhoso.
+            </p>
+        </section>
+
+        <div id="section-identity" class="content-section">
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <div class="inline-block bg-orange-100 text-orange-700 px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Design do Logo</div>
+                    <h2 class="text-3xl font-brand">Capturando a Essência do Felipão</h2>
+                    <p class="text-gray-600">
+                        O conceito visual da marca foi extraído diretamente das fotos de referência. O objetivo foi criar uma "mascote-logotipo" que utilize os traços marcantes do Felipão: o sorriso largo, as bochechas expressivas e o corte de cabelo moderno.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs">1</span>
+                            <span><strong>O Sorriso:</strong> Traduzido em linhas curvas que lembram a fatia de um mamão maduro.</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <span class="w-6 h-6 bg-orange-500 text-white rounded-full flex items-center justify-center text-xs">2</span>
+                            <span><strong>O Cabelo:</strong> Estilizado em tons de marrom cacau para criar contraste com o laranja vibrante.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-card p-8 rounded-3xl flex flex-col items-center justify-center shadow-xl border-2 border-orange-200">
+                    <div class="w-full mb-6 relative">
+                        <img src="FELIPAOMAMAO.png" class="w-full h-auto aspect-[16/9] object-cover rounded-2xl shadow-lg" alt="Felipão Mamão" /> </div>
+                    <p class="text-sm italic text-gray-500 text-center">Esboço conceitual: Traços do rosto do Felipão integrados à forma orgânica da fruta.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-product" class="content-section hidden">
+            <div class="mb-12">
+                <h2 class="text-3xl font-brand mb-4 text-center">Nossa Linha de Doces</h2>
+                <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">
+                    Inspirado no "Doce de Mamão" da referência, criamos uma linha premium que une o rústico ao sofisticado.
+                </p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-orange-50 hover:shadow-2xl transition">
+                        <div class="h-48 product-gradient flex items-center justify-center">
+                            <div class="text-white text-4xl font-brand">Clássico</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Doce de Mamão em Cubos</h3>
+                            <p class="text-sm text-gray-500 mb-4">Receita tradicional com pedaços selecionados e calda leve.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-orange-600">R$ 24,90</span>
+                                <button class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-orange-50 hover:shadow-2xl transition">
+                        <div class="h-48 bg-green-700 flex items-center justify-center">
+                            <div class="text-white text-4xl font-brand">Zero</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Mamão & Stevia</h3>
+                            <p class="text-sm text-gray-500 mb-4">Todo o sabor da fruta sem adição de açúcares. Perfeito para dietas.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-orange-600">R$ 28,50</span>
+                                <button class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-orange-50 hover:shadow-2xl transition">
+                        <div class="h-48 bg-orange-800 flex items-center justify-center">
+                            <div class="text-white text-4xl font-brand">Reserva</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-2">Compota com Especiarias</h3>
+                            <p class="text-sm text-gray-500 mb-4">Toque de cravo, canela e raspas de limão siciliano.</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-orange-600">R$ 32,00</span>
+                                <button class="text-xs bg-orange-100 text-orange-700 px-3 py-1 rounded">Ver Detalhes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section-market" class="content-section hidden">
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="chart-container glass-card p-6 rounded-2xl shadow-inner">
+                    <canvas id="marketChart"></canvas>
+                </div>
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-brand">Por que investir no Mamão?</h2>
+                    <p class="text-gray-600">
+                        O mercado de "Comfort Food" e produtos artesanais cresceu 18% no último ano. O **Mamão do Felipão** se posiciona no nicho Premium, onde o consumidor valoriza a história por trás do rótulo.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 bg-white rounded-lg border-l-4 border-orange-500">
+                            <div class="text-2xl font-bold text-orange-600">85%</div>
+                            <div class="text-xs text-gray-500 uppercase">Preferência por Doces Caseiros</div>
+                        </div>
+                        <div class="p-4 bg-white rounded-lg border-l-4 border-green-500">
+                            <div class="text-2xl font-bold text-green-600">Vitamina C</div>
+                            <div class="text-xs text-gray-500 uppercase">Rico em nutrientes naturais</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-orange-900 text-orange-100 py-12 mt-20">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="font-brand text-2xl mb-4">Mamão do Felipão</h4>
+                <p class="text-sm opacity-70">Onde a alegria de uma criança se transforma no sabor mais doce do Brasil.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Links Rápidos</h4>
+                <ul class="text-sm space-y-2 opacity-70">
+                    <li><a href="#" class="hover:text-white">Nossa História</a></li>
+                    <li><a href="#" class="hover:text-white">Seja um Distribuidor</a></li>
+                    <li><a href="#" class="hover:text-white">Sustentabilidade</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4">Inspirado por</h4>
+                <p class="text-xs opacity-70 leading-relaxed">
+                    Referência visual: ChatGPT Image 9 de jul. de 2026, 19_05_19.png (Felipão) & 1600f143-49fc-433a-ac7d-7b2962784ca2.jpeg (Estética do Produto).
+                </p>
+            </div>
+        </div>
+        <div class="text-center mt-12 pt-8 border-t border-orange-800 text-xs opacity-50">
+            &copy; 2026 Mamão do Felipão - Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // State Management
+        let currentSection = 'identity';
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            document.getElementById('section-' + sectionId).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            document.getElementById('btn-' + sectionId).classList.add('tab-active');
+            
+            if(sectionId === 'market') initCharts();
+        }
+
+        // Charts Logic
+        let marketChartInstance = null;
+
+        function initCharts() {
+            const ctx = document.getElementById('marketChart').getContext('2d');
+            
+            if (marketChartInstance) marketChartInstance.destroy();
+
+            marketChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Vitamina A', 'Vitamina C', 'Fibras', 'Cálcio', 'Energia'],
+                    datasets: [{
+                        label: 'Nutrientes por 100g (Comparativo %)',
+                        data: [65, 80, 45, 30, 90],
+                        backgroundColor: [
+                            '#ff8c42', '#4a7c44', '#ff8c42', '#4a7c44', '#ff8c42'
+                        ],
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw + '% da dose diária';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: { callback: value => value + '%' }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
