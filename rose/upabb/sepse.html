@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Sepse - UPA Benedito Bentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f0f4f8; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .progress-bar { transition: width 0.4s ease-in-out; }
+        .correct { border-color: #10b981; background-color: #ecfdf5; color: #065f46; }
+        .wrong { border-color: #ef4444; background-color: #fef2f2; color: #991b1b; }
+        @keyframes pulse-soft { 0%, 100% { opacity: 1; } 50% { opacity: 0.8; } }
+        .animate-pulse-soft { animation: pulse-soft 2s infinite; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div id="app" class="w-full max-w-2xl glass rounded-3xl shadow-2xl overflow-hidden relative">
+        
+        <!-- Tela de Início -->
+        <div id="start-screen" class="p-8 text-center">
+            <div class="mb-6 inline-block p-4 bg-blue-100 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-extrabold text-slate-800 mb-2">Protocolo de Sepse</h1>
+            <p class="text-blue-600 font-semibold mb-6">UPA Benedito Bentes</p>
+            
+            <div class="bg-blue-50 p-4 rounded-xl mb-8 border border-blue-100">
+                <p class="text-sm text-slate-600">Organizado por:</p>
+                <p class="text-lg font-bold text-slate-800 uppercase tracking-wider">Roseane Conrado</p>
+            </div>
+
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                Bem-vindo ao treinamento dinâmico! Teste seus conhecimentos sobre o Protocolo Gerenciado de Sepse Adulto da nossa unidade. São 15 questões baseadas em nossos fluxogramas oficiais.
+            </p>
+            
+            <button onclick="quiz.start()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-2xl transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg">
+                INICIAR TREINAMENTO
+            </button>
+        </div>
+
+        <!-- Tela do Quiz -->
+        <div id="quiz-screen" class="hidden">
+            <!-- Barra de Progresso -->
+            <div class="h-2 w-full bg-slate-100">
+                <div id="progress" class="h-full bg-blue-500 progress-bar w-0"></div>
+            </div>
+            
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <span id="question-number" class="text-xs font-bold text-slate-400 uppercase tracking-widest">QUESTÃO 01/15</span>
+                    <span id="score-display" class="text-xs font-bold text-blue-500 bg-blue-50 px-3 py-1 rounded-full">SCORE: 0</span>
+                </div>
+
+                <h2 id="question-text" class="text-xl font-bold text-slate-800 mb-8 leading-snug">
+                    Carregando pergunta...
+                </h2>
+
+                <div id="options-container" class="space-y-3 mb-8">
+                    <!-- Opções geradas via JS -->
+                </div>
+
+                <!-- Feedback Area -->
+                <div id="feedback" class="hidden rounded-2xl p-5 mb-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
+                    <p id="feedback-title" class="font-bold mb-1"></p>
+                    <p id="feedback-text" class="text-sm opacity-90"></p>
+                </div>
+
+                <button id="next-btn" onclick="quiz.nextQuestion()" class="hidden w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-4 rounded-2xl transition-all shadow-lg">
+                    PRÓXIMA PERGUNTA
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela de Resultados -->
+        <div id="result-screen" class="hidden p-8 text-center">
+            <h2 class="text-2xl font-extrabold text-slate-800 mb-2">Treinamento Concluído!</h2>
+            <div id="final-rank-box" class="my-8 p-6 rounded-3xl">
+                <p id="final-score" class="text-5xl font-black mb-2">0/15</p>
+                <p id="rank-text" class="text-sm font-bold uppercase tracking-widest"></p>
+            </div>
+            <p id="summary-text" class="text-slate-600 mb-8 italic text-sm px-4"></p>
+            
+            <div class="flex gap-3">
+                <button onclick="location.reload()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-4 rounded-2xl transition-all">
+                    RECOMEÇAR
+                </button>
+            </div>
+            <div class="mt-8 pt-6 border-t border-slate-100 italic text-xs text-slate-400">
+                Conteúdo técnico conforme diretrizes da Roseane Conrado para UPA Benedito Bentes.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Dados baseados estritamente nas imagens rose1.jpeg e rose2.jpeg */
+        const questions = [
+            {
+                q: "Para abrir o protocolo gerenciado de sepse, qual o critério de pontuação NEWS deve ser atingido?",
+                options: [
+                    "NEWS ≥ 3 ou um parâmetro em 2",
+                    "NEWS ≥ 5 ou um dos parâmetros em 3 (Médio/Alto risco)",
+                    "Apenas se o NEWS for igual a 7",
+                    "Qualquer pontuação NEWS associada à febre"
+                ],
+                correct: 1,
+                info: "Segundo o protocolo oficial da UPA, a ficha é aberta com NEWS ≥ 5 ou um parâmetro isolado pontuando 3."
+            },
+            {
+                q: "Na tabela de NEWS, uma frequência respiratória de 21 a 24 irpm pontua quanto?",
+                options: ["0 pontos", "1 ponto", "2 pontos", "3 pontos"],
+                correct: 2,
+                info: "Conforme a tabela NEWS na imagem, FR entre 21-24 marca 2 pontos na coluna amarela."
+            },
+            {
+                q: "Quais exames laboratoriais compõem o 'Pacote de Medidas da Primeira Hora'?",
+                options: [
+                    "Apenas Hemograma e Glicemia",
+                    "Hemograma, Ureia, Creatinina, TGO, TGP, EAS e Lactato",
+                    "Lactato e Culturas apenas",
+                    "PCR, Troponina e RX de tórax"
+                ],
+                correct: 1,
+                info: "A coleta imediata inclui Hemograma completo, função renal, transaminases, urina tipo 1 e lactato arterial/venoso."
+            },
+            {
+                q: "Em casos de choque séptico, em quanto tempo o antibiótico endovenoso deve ser administrado?",
+                options: ["Nas primeiras 3 horas", "Dentro de 1 hora", "Imediatamente em 15 minutos", "Após o resultado das culturas"],
+                correct: 1,
+                info: "O item 2 do protocolo diz: administrar antibiótico dentro de 1 hora em casos de choque séptico sem adiar o início."
+            },
+            {
+                q: "Qual a recomendação de reposição volêmica nas primeiras 3 horas?",
+                options: [
+                    "10 ml/kg de Soro Fisiológico",
+                    "20 ml/kg de Ringer Lactato",
+                    "30 ml/kg de Ringer Lactato",
+                    "500 ml de Soro Fisiológico em bolus"
+                ],
+                correct: 2,
+                info: "O protocolo padroniza 30 ml/kg de Ringer Lactato nas primeiras 3 horas de atendimento."
+            },
+            {
+                q: "Qual a meta de Pressão Arterial Média (PAM) para decidir a administração de vasopressor?",
+                options: ["PAM < 75 mmHg", "PAM < 70 mmHg", "PAM < 65 mmHg", "PAM < 60 mmHg"],
+                correct: 2,
+                info: "Administrar vasopressor se a PAM permanecer < 65 mmHg após reposição volêmica adequada."
+            },
+            {
+                q: "Para foco suspeito PULMONAR, qual a droga de 1ª escolha?",
+                options: [
+                    "Ceftriaxona 2g EV (1x dia) + Azitromicina 500mg EV (24/24h)",
+                    "Ceftriaxona 2g EV (12/12h)",
+                    "Cefazolina 1g EV (8/8h)",
+                    "Levofloxacino 750mg EV (1x dia)"
+                ],
+                correct: 0,
+                info: "A padronização da UPA para pulmão é Ceftriaxona associada à Azitromicina."
+            },
+            {
+                q: "Qual a conduta para foco de PELE + PARTES MOLES em pacientes DIABÉTICOS ou com feridas necrosadas?",
+                options: [
+                    "Apenas Cefazolina 1g",
+                    "Ceftriaxona 2g EV (1x dia) + Clindamicina 600mg EV (8/8h)",
+                    "Ciprofloxacino 400mg EV (12/12h)",
+                    "Metronidazol 500mg EV"
+                ],
+                correct: 1,
+                info: "Diabéticos com foco cutâneo recebem Ceftriaxona combinada com Clindamicina conforme a tabela de antimicrobianos."
+            },
+            {
+                q: "No foco INTRA-ABDOMINAL ou foco indeterminado, qual a combinação de drogas indicada?",
+                options: [
+                    "Ceftriaxona + Azitromicina",
+                    "Ceftriaxona 2g EV + Metronidazol 500mg EV (8/8h)",
+                    "Levofloxacino isolado",
+                    "Cefazolina + Clindamicina"
+                ],
+                correct: 1,
+                info: "Para focos abdominais ou não identificados, usa-se Ceftriaxona com Metronidazol."
+            },
+            {
+                q: "Qual parâmetro de plaquetas indica Disfunção Orgânica neste protocolo?",
+                options: [
+                    "< 150.000/mm3",
+                    "< 100.000/mm3 ou redução de 50% em relação ao registrado em 3 dias",
+                    "< 50.000/mm3",
+                    "A contagem de plaquetas não é critério de disfunção"
+                ],
+                correct: 1,
+                info: "Plaquetopenia abaixo de 100 mil ou queda abrupta de 50% é um sinal clássico de disfunção orgânica na sepse."
+            },
+            {
+                q: "Para foco de MENINGITE, qual a dose de Ceftriaxona padronizada?",
+                options: [
+                    "2g EV uma vez ao dia",
+                    "1g EV a cada 12 horas",
+                    "2g EV a cada 12 horas",
+                    "2g EV a cada 8 horas"
+                ],
+                correct: 2,
+                info: "Na meningite, a dose de Ceftriaxona é dobrada para 2g EV a cada 12 horas."
+            },
+            {
+                q: "O que caracteriza 'Tempo Zero' no protocolo?",
+                options: [
+                    "O momento da alta",
+                    "O momento do resultado do lactato",
+                    "A abertura do protocolo/triagem com reconhecimento da infecção",
+                    "A punção do acesso venoso"
+                ],
+                correct: 2,
+                info: "O Tempo Zero é o marco inicial onde se identifica o risco e inicia-se o pacote de medidas."
+            },
+            {
+                q: "Qual alteração no nível de consciência é citada como sinal de Disfunção Orgânica?",
+                options: [
+                    "Apenas agitação psicomotora",
+                    "Qualquer alteração do nível de consciência",
+                    "Apenas coma profundo",
+                    "O paciente deve estar obrigatoriamente alerta"
+                ],
+                correct: 1,
+                info: "Qualquer mudança aguda no estado mental é critério para disfunção orgânica na ficha de sepse."
+            },
+            {
+                q: "Sobre a Saturação (SpO2) na Escala 1 do NEWS, qual valor pontua 3?",
+                options: ["94-95%", "92-93%", "≤ 91%", "96%"],
+                correct: 2,
+                info: "Na escala 1 de SpO2, valores iguais ou menores a 91% são considerados alto risco (3 pontos)."
+            },
+            {
+                q: "Qual a meta de oxigênio para pacientes com dispneia ou dessaturação?",
+                options: [
+                    "Manter SpO2 > 85%",
+                    "Manter SpO2 > 90%",
+                    "Manter SpO2 em 100%",
+                    "Não é necessário O2 suplementar"
+                ],
+                correct: 1,
+                info: "O protocolo exige necessidade de O2 para manter saturação acima de 90% como critério de disfunção respiratória."
+            }
+        ];
+
+        const quiz = {
+            currentQuestion: 0,
+            score: 0,
+            answered: false,
+
+            start() {
+                document.getElementById('start-screen').classList.add('hidden');
+                document.getElementById('quiz-screen').classList.remove('hidden');
+                this.showQuestion();
+            },
+
+            showQuestion() {
+                this.answered = false;
+                const q = questions[this.currentQuestion];
+                
+                // Update UI
+                document.getElementById('question-number').innerText = `QUESTÃO ${String(this.currentQuestion + 1).padStart(2, '0')}/15`;
+                document.getElementById('progress').style.width = `${((this.currentQuestion + 1) / questions.length) * 100}%`;
+                document.getElementById('question-text').innerText = q.q;
+                
+                const container = document.getElementById('options-container');
+                container.innerHTML = '';
+                
+                q.options.forEach((opt, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all font-medium text-slate-700 flex justify-between items-center group";
+                    btn.innerHTML = `<span>${opt}</span><span class="opacity-0 group-hover:opacity-100 transition-opacity">➔</span>`;
+                    btn.onclick = () => this.checkAnswer(index, btn);
+                    container.appendChild(btn);
+                });
+
+                document.getElementById('feedback').classList.add('hidden');
+                document.getElementById('next-btn').classList.add('hidden');
+            },
+
+            checkAnswer(index, btn) {
+                if (this.answered) return;
+                this.answered = true;
+                
+                const q = questions[this.currentQuestion];
+                const feedbackDiv = document.getElementById('feedback');
+                const title = document.getElementById('feedback-title');
+                const text = document.getElementById('feedback-text');
+                
+                // Desabilitar outros botões
+                const buttons = document.querySelectorAll('#options-container button');
+                
+                if (index === q.correct) {
+                    this.score++;
+                    btn.classList.add('correct');
+                    feedbackDiv.className = "rounded-2xl p-5 mb-6 correct block animate-pulse-soft";
+                    title.innerText = "✓ Excelente, Colega!";
+                } else {
+                    btn.classList.add('wrong');
+                    buttons[q.correct].classList.add('correct');
+                    feedbackDiv.className = "rounded-2xl p-5 mb-6 wrong block";
+                    title.innerText = "✕ Atenção ao Protocolo!";
+                }
+
+                text.innerText = q.info;
+                document.getElementById('score-display').innerText = `SCORE: ${this.score}`;
+                document.getElementById('next-btn').classList.remove('hidden');
+            },
+
+            nextQuestion() {
+                this.currentQuestion++;
+                if (this.currentQuestion < questions.length) {
+                    this.showQuestion();
+                } else {
+                    this.showResults();
+                }
+            },
+
+            showResults() {
+                document.getElementById('quiz-screen').classList.add('hidden');
+                document.getElementById('result-screen').classList.remove('hidden');
+                
+                const finalScore = document.getElementById('final-score');
+                const rankText = document.getElementById('rank-text');
+                const summary = document.getElementById('summary-text');
+                const rankBox = document.getElementById('final-rank-box');
+                
+                const percent = (this.score / questions.length) * 100;
+                finalScore.innerText = `${this.score}/${questions.length}`;
+
+                if (percent === 100) {
+                    rankBox.className = "my-8 p-6 rounded-3xl bg-emerald-500 text-white shadow-lg";
+                    rankText.innerText = "ESPECIALISTA EM SEPSE - UPA BB";
+                    summary.innerText = "Incrível! Você domina todos os detalhes do protocolo da Roseane Conrado. Está pronto para salvar vidas com máxima agilidade!";
+                } else if (percent >= 70) {
+                    rankBox.className = "my-8 p-6 rounded-3xl bg-blue-500 text-white shadow-lg";
+                    rankText.innerText = "PROFISSIONAL CAPACITADO";
+                    summary.innerText = "Muito bom! Você conhece bem o fluxo, mas uma revisão nos detalhes dos antibióticos ou NEWS pode te levar à perfeição.";
+                } else {
+                    rankBox.className = "my-8 p-6 rounded-3xl bg-amber-500 text-white shadow-lg";
+                    rankText.innerText = "EM TREINAMENTO";
+                    summary.innerText = "A sepse exige precisão nos tempos e doses. Recomendamos ler as fichas de protocolo novamente e repetir o quiz!";
+                }
+            }
+        };
+    </script>
+</body>
+</html>
