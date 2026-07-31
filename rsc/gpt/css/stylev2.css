@@ -1,0 +1,404 @@
+/* ===========================================================
+   RESET
+=========================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    background:#f4f6f9;
+
+    font-family:
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+    color:#2c3e50;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+
+/* ===========================================================
+   CONTAINER
+=========================================================== */
+
+.container{
+
+    max-width:1500px;
+
+}
+
+
+/* ===========================================================
+   CARD
+=========================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:12px;
+
+    margin-bottom:25px;
+
+    overflow:hidden;
+
+    box-shadow:
+
+    0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.card-header{
+
+    background:#1351B4;
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:18px;
+
+    padding:14px 20px;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+
+/* ===========================================================
+   CABEÇALHO
+=========================================================== */
+
+h2{
+
+    font-weight:700;
+
+    color:#1351B4;
+
+}
+
+h4{
+
+    font-weight:600;
+
+}
+
+.tituloSecao{
+
+    color:#1351B4;
+
+    font-weight:bold;
+
+    margin-top:25px;
+
+}
+
+hr{
+
+    border-top:2px solid #1351B4;
+
+}
+
+
+/* ===========================================================
+   LABELS
+=========================================================== */
+
+label{
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+
+/* ===========================================================
+   INPUTS
+=========================================================== */
+
+.form-control{
+
+    border-radius:8px;
+
+    min-height:44px;
+
+    border:1px solid #cfd4da;
+
+    transition:.3s;
+
+}
+
+.form-control:focus{
+
+    border-color:#1351B4;
+
+    box-shadow:
+
+    0 0 0 .2rem rgba(19,81,180,.20);
+
+}
+
+
+/* ===========================================================
+   RADIO
+=========================================================== */
+
+input[type=radio]{
+
+    transform:scale(1.15);
+
+    margin-right:5px;
+
+}
+
+
+/* ===========================================================
+   CHECKBOX
+=========================================================== */
+
+input[type=checkbox]{
+
+    transform:scale(1.15);
+
+    margin-right:8px;
+
+}
+
+
+/* ===========================================================
+   TABLE
+=========================================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table thead{
+
+    background:#1351B4;
+
+    color:white;
+
+}
+
+.table th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table tbody tr:hover{
+
+    background:#f5f9ff;
+
+}
+
+
+/* ===========================================================
+   SUBTOTAL
+=========================================================== */
+
+tfoot{
+
+    background:#ecf2ff;
+
+    font-weight:bold;
+
+}
+
+tfoot input{
+
+    background:#fff8d5 !important;
+
+    font-weight:bold;
+
+    text-align:center;
+
+}
+
+
+/* ===========================================================
+   TOTAL GERAL
+=========================================================== */
+
+#totalGeral{
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    color:#0d6efd;
+
+    background:#fff7d0;
+
+}
+
+
+/* ===========================================================
+   BOTÕES
+=========================================================== */
+
+.btn{
+
+    border-radius:8px;
+
+    padding:10px 20px;
+
+    font-weight:600;
+
+}
+
+.btn i{
+
+    margin-right:6px;
+
+}
+
+.btn-primary{
+
+    background:#1351B4;
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#0f4aa3;
+
+}
+
+.btn-success{
+
+    background:#168821;
+
+    border:none;
+
+}
+
+.btn-danger{
+
+    border:none;
+
+}
+
+.btn-warning{
+
+    color:#fff;
+
+}
+
+
+/* ===========================================================
+   FILE
+=========================================================== */
+
+input[type=file]{
+
+    padding:12px;
+
+}
+
+
+/* ===========================================================
+   OBSERVAÇÕES
+=========================================================== */
+
+textarea{
+
+    resize:vertical;
+
+}
+
+
+/* ===========================================================
+   ASSINATURA
+=========================================================== */
+
+#assinatura{
+
+    font-weight:bold;
+
+}
+
+
+/* ===========================================================
+   BADGES
+=========================================================== */
+
+.badge{
+
+    font-size:13px;
+
+    padding:8px 12px;
+
+}
+
+
+/* ===========================================================
+   RESPONSIVO
+=========================================================== */
+
+@media(max-width:992px){
+
+.card-body{
+
+padding:15px;
+
+}
+
+.card-header{
+
+font-size:16px;
+
+}
+
+.table{
+
+font-size:13px;
+
+}
+
+.btn{
+
+width:100%;
+
+margin-bottom:10px;
+
+}
+
+}

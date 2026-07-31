@@ -1,0 +1,499 @@
+/* ==========================================================
+   RSC-PCCTAE
+   style.css
+   ========================================================== */
+
+:root{
+
+    --azul:#1351b4;
+    --azul-claro:#2670e8;
+    --verde:#168821;
+    --cinza:#f4f6f8;
+    --cinza2:#e5e5e5;
+    --texto:#222;
+    --borda:#d7d7d7;
+    --erro:#c62828;
+    --sucesso:#2e7d32;
+
+    --radius:8px;
+
+    --sombra:0 4px 14px rgba(0,0,0,.10);
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+body{
+
+    background:#eef2f6;
+
+    font-family:
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
+    color:var(--texto);
+
+}
+
+
+/* ========================================================== */
+
+.container{
+
+    max-width:1500px;
+
+}
+
+
+/* ========================================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--sombra);
+
+    margin-bottom:25px;
+
+}
+
+
+/* ========================================================== */
+
+.card-header{
+
+    background:var(--azul);
+
+    color:#fff;
+
+    font-weight:600;
+
+    font-size:18px;
+
+    letter-spacing:.4px;
+
+    padding:14px 20px;
+
+}
+
+
+/* ========================================================== */
+
+.card-body{
+
+    padding:25px;
+
+}
+
+
+/* ========================================================== */
+
+h2{
+
+    color:var(--azul);
+
+    font-weight:700;
+
+}
+
+h4{
+
+    color:#333;
+
+}
+
+h5{
+
+    color:var(--azul);
+
+    font-weight:bold;
+
+}
+
+.tituloSecao{
+
+    margin-top:25px;
+
+}
+
+
+/* ========================================================== */
+
+label{
+
+    font-weight:600;
+
+    margin-bottom:6px;
+
+}
+
+
+/* ========================================================== */
+
+.form-control{
+
+    border-radius:6px;
+
+    border:1px solid var(--borda);
+
+    transition:.2s;
+
+}
+
+
+.form-control:focus{
+
+    border-color:var(--azul);
+
+    box-shadow:0 0 0 .15rem rgba(19,81,180,.20);
+
+}
+
+
+/* ========================================================== */
+
+input[readonly]{
+
+    background:#f3f5f8;
+
+    font-weight:bold;
+
+}
+
+
+/* ========================================================== */
+
+textarea{
+
+    resize:vertical;
+
+}
+
+
+/* ========================================================== */
+
+.form-check{
+
+    margin-bottom:12px;
+
+}
+
+.form-check-input{
+
+    transform:scale(1.15);
+
+    margin-right:8px;
+
+}
+
+
+/* ========================================================== */
+
+.table{
+
+    margin-bottom:0;
+
+    background:#fff;
+
+}
+
+.table thead{
+
+    background:var(--azul);
+
+    color:#fff;
+
+}
+
+.table th{
+
+    text-align:center;
+
+    vertical-align:middle;
+
+    font-size:14px;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+.table tbody tr:hover{
+
+    background:#f5f9ff;
+
+}
+
+
+/* ========================================================== */
+
+tfoot{
+
+    background:#f8f8f8;
+
+    font-weight:bold;
+
+}
+
+
+/* ========================================================== */
+
+.btn{
+
+    border-radius:6px;
+
+    padding:10px 22px;
+
+    font-weight:600;
+
+}
+
+
+/* ========================================================== */
+
+.btn-success{
+
+    background:var(--verde);
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:#11661a;
+
+}
+
+
+/* ========================================================== */
+
+.btn-primary{
+
+    background:var(--azul);
+
+    border:none;
+
+}
+
+.btn-primary:hover{
+
+    background:#0d47a1;
+
+}
+
+
+/* ========================================================== */
+
+.btn-danger{
+
+    border:none;
+
+}
+
+
+/* ========================================================== */
+
+.btn-warning{
+
+    color:#fff;
+
+}
+
+
+/* ========================================================== */
+
+#totalGeral{
+
+    font-size:28px;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:var(--verde);
+
+}
+
+
+/* ========================================================== */
+
+#subtotal1,
+#subtotal2,
+#subtotal3,
+#subtotal4,
+#subtotal5,
+#subtotal6{
+
+    text-align:center;
+
+    font-weight:bold;
+
+    color:var(--azul);
+
+}
+
+
+/* ========================================================== */
+
+#listaArquivos{
+
+    margin-top:20px;
+
+    border:1px dashed #bbb;
+
+    min-height:70px;
+
+    padding:15px;
+
+    border-radius:6px;
+
+    background:#fafafa;
+
+}
+
+
+/* ========================================================== */
+
+.alerta{
+
+    color:var(--erro);
+
+    font-size:13px;
+
+}
+
+.sucesso{
+
+    color:var(--sucesso);
+
+}
+
+
+/* ========================================================== */
+
+hr{
+
+    margin-top:10px;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ========================================================== */
+
+.table-responsive{
+
+    overflow:auto;
+
+}
+
+
+/* ========================================================== */
+
+@media(max-width:992px){
+
+.card-body{
+
+    padding:15px;
+
+}
+
+.card-header{
+
+    font-size:16px;
+
+}
+
+.table{
+
+    font-size:13px;
+
+}
+
+.btn{
+
+    width:100%;
+
+    margin-top:8px;
+
+}
+
+}
+
+/* ==========================================================
+   IMPRESSÃO
+   ========================================================== */
+
+@media print{
+
+body{
+
+    background:#fff;
+
+}
+
+.btn,
+#btnSalvar,
+#btnPDF,
+#btnImprimir{
+
+    display:none !important;
+
+}
+
+.card{
+
+    box-shadow:none;
+
+    border:1px solid #999;
+
+}
+
+.card-header{
+
+    background:#fff !important;
+
+    color:#000 !important;
+
+    border-bottom:2px solid #000;
+
+}
+
+a{
+
+    text-decoration:none;
+
+}
+
+.table th{
+
+    background:#eee !important;
+
+    color:#000 !important;
+
+}
+
+.container{
+
+    width:100%;
+
+    max-width:100%;
+
+}
+
+}
