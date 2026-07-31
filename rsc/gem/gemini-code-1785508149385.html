@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário RSC-PCCTAE</title>
+    <style>
+        :root {
+            --primary-color: #00420c;
+            --bg-color: #f4f6f8;
+            --border-color: #ccc;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+        fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #fafafa;
+        }
+        legend {
+            font-weight: bold;
+            color: var(--primary-color);
+            background: #fff;
+            padding: 0 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .form-row .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        input[type="text"], input[type="number"], input[type="date"], input[type="email"], select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+            height: 35px;
+        }
+        .radio-group label {
+            font-weight: normal;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        .radio-group input {
+            margin-right: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #eee;
+            font-weight: 600;
+        }
+        .table-container {
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        .table-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #444;
+        }
+        .btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .btn:hover {
+            background-color: #002d08;
+        }
+        .btn-remove {
+            background-color: #c9302c;
+        }
+        .btn-remove:hover {
+            background-color: #9f2623;
+        }
+        .total-box {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .declaration {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .declaration ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        .signature-area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+        .signature-box {
+            flex: 2;
+            border-top: 1px solid #000;
+            text-align: center;
+            padding-top: 5px;
+        }
+        .date-box {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Modelo para instrução de processo de Reconhecimento de Saberes e Competências (RSC-PCCTAE)</h2>
+    
+    <form id="rscForm">
+        <!-- 1. Identificação do Servidor -->
+        <fieldset>
+            <legend>1. Identificação do Servidor</legend>
+            <div class="form-row">
+                <div class="form-group" style="flex: 2;">
+                    <label>Nome:</label>
+                    <input type="text" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label>Siape:</label>
+                    <input type="text" name="siape" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Cargo:</label>
+                    <input type="text" name="cargo" required>
+                </div>
+                <div class="form-group">
+                    <label>Data de ingresso na Instituição:</label>
+                    <input type="date" name="data_ingresso" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Nível de Classificação:</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nivel_classificacao" value="A"> A</label>
+                    <label><input type="radio" name="nivel_classificacao" value="B"> B</label>
+                    <label><input type="radio" name="nivel_classificacao" value="C"> C</label>
+                    <label><input type="radio" name="nivel_classificacao" value="D"> D</label>
+                    <label><input type="radio" name="nivel_classificacao" value="E"> E</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Lotação:</label>
+                    <input type="text" name="lotacao" required>
+                </div>
+                <div class="form-group">
+                    <label>Função/Encargo (se houver):</label>
+                    <input type="text" name="funcao">
+                </div>
+                <div class="form-group">
+                    <label>Telefone/E-mail:</label>
+                    <input type="text" name="contato" required>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- 2. Informações do Requerimento -->
+        <fieldset>
+            <legend>2. Informações do Requerimento</legend>
+            <div class="form-group">
+                <label>Nível de RSC pretendido:</label>
+                <div class="radio-group" onchange="atualizarTextoFinal()">
+                    <label><input type="radio" name="nivel_rsc" value="RSC-I"> RSC-I</label>
+                    <label><input type="radio" name="nivel_rsc" value="RSC-II"> RSC-II</label>
+                    <label><input type="radio" name="nivel_rsc" value="RSC-III"> RSC-III</label>
+                    <label><input type="radio" name="nivel_rsc" value="RSC-IV"> RSC-IV</label>
+                    <label><input type="radio" name="nivel_rsc" value="RSC-V"> RSC-V</label>
+                    <label><input type="radio" name="nivel_rsc" value="RSC-VI"> RSC-VI</label>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Pontuação mínima necessária:</label>
+                    <input type="number" name="pont_minima" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Pontuação total apresentada:</label>
+                    <input type="number" id="pont_total_apresentada" readonly style="background:#eee;">
+                </div>
+                <div class="form-group">
+                    <label>Quantidade de critérios específicos utilizados:</label>
+                    <input type="number" name="qtd_criterios">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Pontuação total excedente (banco de pontos):</label>
+                    <input type="number" name="pont_excedente" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Saldo de pontuação de concessão anterior:</label>
+                    <input type="number" name="saldo_anterior" step="0.01">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Número do processo relativo à concessão anterior do RSC-PCCTAE (se houver):</label>
+                <input type="text" name="num_processo_anterior">
+            </div>
+        </fieldset>
+
+        <!-- 3. Descrição das Atividades -->
+        <fieldset>
+            <legend>3. Descrição das Atividades por Requisito Legal</legend>
+            <p style="font-size: 0.9rem; color: #555;">
+                Organize os itens de acordo com a sua trajetória, contexto de atuação, principais funções e síntese das contribuições institucionais, vinculando cada atividade ao número correspondente aos critérios específicos.
+            </p>
+
+            <div id="criterios-container">
+                <!-- Tabelas serão injetadas via JS -->
+            </div>
+
+            <div class="total-box">
+                TOTAL GERAL (Critérios I a VI): <span id="total-geral">0.00</span> pontos
+            </div>
+
+            <div style="background: #e6f2ff; padding: 15px; border-radius: 4px; border: 1px solid #b8daff; font-size: 0.95rem;">
+                À vista das informações apresentadas, totalizo <strong id="texto-pontos">_____</strong> pontos e atendo aos critérios legais e regulamentares para o nível <strong id="texto-nivel">____</strong> do RSC-PCCTAE. Solicito a análise pela CRSC-PCCTAE.
+            </div>
+        </fieldset>
+
+        <!-- 4. Declaração de Conformidade Legal -->
+        <fieldset>
+            <legend>4. Declaração de Conformidade Legal</legend>
+            <div class="declaration">
+                Declaro, para os fins previstos no Decreto regulamentador do RSC-PCCTAE, que:
+                <ul>
+                    <li>I - Todos os fatos apresentados ocorreram no exercício do cargo;</li>
+                    <li>II - Nenhuma atividade aqui declarada foi utilizada em requerimentos anteriores;</li>
+                    <li>III - Toda a documentação anexada é autêntica e comprova integralmente as atividades apresentadas; e</li>
+                    <li>IV - Tenho ciência de que informações falsas implicam responsabilidade administrativa, civil e penal.</li>
+                </ul>
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight: normal; font-size: 1rem; cursor: pointer;">
+                    <input type="checkbox" required style="width: auto;"> Li e concordo com a declaração acima.
+                </label>
+            </div>
+
+            <div class="signature-area">
+                <div class="signature-box">
+                    Assinatura do Servidor
+                </div>
+                <div class="date-box">
+                    <label>Data:</label>
+                    <input type="date" required>
+                </div>
+            </div>
+        </fieldset>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button type="button" class="btn" style="padding: 12px 30px; font-size: 1.1rem;" onclick="window.print()">Imprimir / Salvar PDF</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Definição dos critérios do anexo
+    const criterios = [
+        { id: 1, nome: "Critério I - Participação em grupos de trabalho, comissões, comitês, núcleos, representações ou similares" },
+        { id: 2, nome: "Critério II - Projetos institucionais, gestão, ensino, pesquisa, extensão, inovação ou assistência" },
+        { id: 3, nome: "Critério III - Premiações e reconhecimentos públicos" },
+        { id: 4, nome: "Critério IV - Responsabilidades técnico-administrativas e/ou especializadas" },
+        { id: 5, nome: "Critério V - Funções ou cargos de direção e assessoramento institucional" },
+        { id: 6, nome: "Critério VI - Produção, prospecção e difusão de conhecimento" }
+    ];
+
+    const container = document.getElementById('criterios-container');
+
+    // Inicializar Tabelas
+    criterios.forEach(c => {
+        const html = `
+            <div class="table-container" id="container-crit-${c.id}">
+                <div class="table-title">${c.nome}</div>
+                <table id="table-crit-${c.id}">
+                    <thead>
+                        <tr>
+                            <th width="8%">Nº Item</th>
+                            <th width="25%">Critério Específico</th>
+                            <th width="12%">Unidade de Medida</th>
+                            <th width="12%">Pontuação</th>
+                            <th width="15%">Pontuação Obtida</th>
+                            <th width="20%">Documentos Comprobatórios (Anexos)</th>
+                            <th width="8%">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Linhas adicionadas dinamicamente -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" style="text-align: right; font-weight: bold;">Subtotal Critério ${c.id}:</td>
+                            <td style="font-weight: bold;"><span id="subtotal-${c.id}">0.00</span></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <button type="button" class="btn" onclick="adicionarLinha(${c.id})">+ Adicionar Atividade</button>
+            </div>
+        `;
+        container.innerHTML += html;
+        // Adiciona 1 linha vazia por padrão
+        adicionarLinha(c.id);
+    });
+
+    // Função para adicionar nova linha na tabela
+    function adicionarLinha(idCriterio) {
+        const tbody = document.querySelector(`#table-crit-${idCriterio} tbody`);
+        const tr = document.createElement('tr');
+        
+        tr.innerHTML = `
+            <td><input type="text" placeholder="Ex: 1.1"></td>
+            <td><input type="text" placeholder="Descrição"></td>
+            <td><input type="number" class="qtd" value="0" min="0" step="0.1" oninput="calcular(this, ${idCriterio})"></td>
+            <td><input type="number" class="pont" value="0" min="0" step="0.1" oninput="calcular(this, ${idCriterio})"></td>
+            <td><input type="text" class="obtida" value="0.00" readonly style="background:#eee;"></td>
+            <td><input type="text" placeholder="Ex: Portaria nº X"></td>
+            <td><button type="button" class="btn btn-remove" onclick="removerLinha(this, ${idCriterio})">X</button></td>
+        `;
+        tbody.appendChild(tr);
+    }
+
+    // Remover linha
+    function removerLinha(btn, idCriterio) {
+        const tr = btn.closest('tr');
+        tr.remove();
+        atualizarSubtotal(idCriterio);
+    }
+
+    // Calcular pontuação (Unidade de Medida X Pontuação)
+    function calcular(input, idCriterio) {
+        const tr = input.closest('tr');
+        const qtd = parseFloat(tr.querySelector('.qtd').value) || 0;
+        const pont = parseFloat(tr.querySelector('.pont').value) || 0;
+        const obtida = qtd * pont;
+        
+        tr.querySelector('.obtida').value = obtida.toFixed(2);
+        atualizarSubtotal(idCriterio);
+    }
+
+    // Atualizar subtotal de um critério
+    function atualizarSubtotal(idCriterio) {
+        const tbody = document.querySelector(`#table-crit-${idCriterio} tbody`);
+        const obtidas = tbody.querySelectorAll('.obtida');
+        let subtotal = 0;
+        
+        obtidas.forEach(input => {
+            subtotal += parseFloat(input.value) || 0;
+        });
+        
+        document.getElementById(`subtotal-${idCriterio}`).innerText = subtotal.toFixed(2);
+        atualizarTotalGeral();
+    }
+
+    // Atualizar total geral somando todos os subtotais
+    function atualizarTotalGeral() {
+        let totalGeral = 0;
+        for (let i = 1; i <= 6; i++) {
+            totalGeral += parseFloat(document.getElementById(`subtotal-${i}`).innerText) || 0;
+        }
+        
+        document.getElementById('total-geral').innerText = totalGeral.toFixed(2);
+        document.getElementById('pont_total_apresentada').value = totalGeral.toFixed(2);
+        document.getElementById('texto-pontos').innerText = totalGeral.toFixed(2);
+    }
+
+    // Atualizar texto final dinâmico
+    function atualizarTextoFinal() {
+        const nivelSelecionado = document.querySelector('input[name="nivel_rsc"]:checked');
+        if (nivelSelecionado) {
+            document.getElementById('texto-nivel').innerText = nivelSelecionado.value;
+        }
+    }
+</script>
+</body>
+</html>
