@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Requerimento RSC-PCCTAE — Portaria MEC nº 608/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f4f6f2;
+    --paper: #ffffff;
+    --ink: #1b231f;
+    --ink-soft: #4d5850;
+    --line: #d7ddd3;
+    --line-strong: #b9c3b6;
+    --green-900: #0c3d2a;
+    --green-800: #10513a;
+    --green-700: #16663f;
+    --green-100: #e6efe4;
+    --gold: #ab7f1f;
+    --gold-soft: #f4ead0;
+    --danger: #a4342a;
+    --danger-soft: #f7e6e3;
+    --radius: 4px;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'IBM Plex Sans', -apple-system, Segoe UI, sans-serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    background-image:
+      linear-gradient(var(--bg) 0%, var(--bg) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(12,61,42,0.035) 40px);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 32px 16px 80px;
+  }
+
+  .sheet{
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 1px 3px rgba(12,25,18,.06), 0 12px 32px -18px rgba(12,25,18,.25);
+  }
+
+  /* ---------- Header / letterhead ---------- */
+  .letterhead{
+    background: var(--green-900);
+    color: #eef4ee;
+    padding: 28px 36px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .letterhead::after{
+    content:"";
+    position:absolute; inset:0;
+    background: radial-gradient(600px 200px at 100% 0%, rgba(171,127,31,0.18), transparent 60%);
+    pointer-events:none;
+  }
+  .letterhead-top{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:20px;
+    position:relative;
+  }
+  .brand{ display:flex; gap:12px; align-items:center; }
+  .brand-mark{
+    width:40px; height:40px; border:1.5px solid rgba(238,244,238,.6);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--serif); font-weight:700; font-size:14px; letter-spacing:.5px;
+    flex-shrink:0;
+  }
+  .brand-text{ font-family: var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#cfe0d1;}
+  .brand-text strong{ display:block; font-family:var(--sans); font-size:13px; letter-spacing:.02em; color:#fff; text-transform:none; font-weight:600; margin-top:2px;}
+  .ref-tag{
+    text-align:right; font-family: var(--mono); font-size:11px; color:#cfe0d1; letter-spacing:.04em;
+  }
+  .ref-tag a { color:#eef4ee; }
+
+  h1.doc-title{
+    font-family: var(--serif);
+    font-weight:600;
+    font-size: clamp(22px, 3.4vw, 30px);
+    line-height:1.25;
+    margin: 22px 0 6px;
+    max-width: 640px;
+    position:relative;
+  }
+  .doc-sub{
+    font-size:13px; color:#cfe0d1; max-width:600px; position:relative;
+  }
+
+  /* ---------- Body sections ---------- */
+  .content{ padding: 30px 36px 40px; }
+
+  .section{ margin-top: 40px; }
+  .section:first-child{ margin-top: 8px; }
+
+  .section-head{
+    display:flex; align-items:baseline; gap:14px;
+    border-bottom: 2px solid var(--green-900);
+    padding-bottom:8px; margin-bottom:18px;
+  }
+  .section-num{
+    font-family: var(--serif); font-weight:700; font-size:26px; color: var(--green-900);
+    line-height:1;
+  }
+  .section-title{
+    font-family: var(--serif); font-weight:600; font-size:17px; color: var(--ink);
+  }
+  .section-note{
+    font-size:12.5px; color: var(--ink-soft); margin: -8px 0 16px;
+  }
+
+  /* form grid */
+  .field-table{ width:100%; border-collapse:collapse; }
+  .field-table tr{ border-bottom:1px solid var(--line); }
+  .field-table tr:last-child{ border-bottom:none; }
+  .field-table td{ padding: 10px 4px; vertical-align:middle; }
+  .field-table td.label{
+    width: 280px; font-size:13px; color: var(--ink-soft); font-weight:500; padding-right:16px;
+  }
+  @media (max-width: 620px){
+    .field-table td.label{ width: 40%; font-size:12.5px; }
+  }
+
+  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="number"]{
+    width:100%; border:none; border-bottom:1.5px solid var(--line-strong);
+    background: transparent; font-family: var(--sans); font-size:14.5px; color:var(--ink);
+    padding: 6px 2px; outline:none; transition: border-color .15s, background .15s;
+  }
+  input:focus{ border-bottom-color: var(--green-700); background: var(--green-100); }
+  input[readonly]{ color: var(--green-900); font-weight:600; border-bottom-style:dashed; background:transparent;}
+  input.invalid{ border-bottom-color: var(--danger); background: var(--danger-soft); }
+
+  .radio-row{ display:flex; flex-wrap:wrap; gap:14px 20px; }
+  .radio-row label{
+    display:flex; align-items:center; gap:6px; font-size:14px; cursor:pointer; user-select:none;
+  }
+  .radio-row input[type="radio"]{ accent-color: var(--green-800); width:16px; height:16px; }
+
+  /* ---------- Criterio blocks (section 3) ---------- */
+  .criterio{
+    margin-bottom: 30px; border:1px solid var(--line); border-radius: var(--radius);
+    overflow:hidden;
+  }
+  .criterio-head{
+    background: var(--green-100); padding: 12px 16px;
+    display:flex; align-items:baseline; gap:10px; justify-content:space-between; flex-wrap:wrap;
+  }
+  .criterio-tag{
+    font-family: var(--mono); font-size:11px; letter-spacing:.08em; color: var(--green-900);
+    background: #fff; border:1px solid var(--green-700); padding:2px 8px; border-radius:20px; font-weight:600;
+  }
+  .criterio-title{ font-size:13.5px; font-weight:600; color: var(--green-900); flex:1; min-width:200px; }
+  .criterio-subtotal{ font-size:12.5px; color:var(--ink-soft); font-family:var(--mono); white-space:nowrap; }
+  .criterio-subtotal b{ color: var(--green-900); font-size:14px; }
+
+  .table-wrap{ overflow-x:auto; }
+  table.itens{ width:100%; border-collapse:collapse; min-width: 720px; }
+  table.itens thead th{
+    text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+    color: var(--ink-soft); font-weight:600; padding:10px 10px; border-bottom:1px solid var(--line);
+    background: #fbfcfa;
+  }
+  table.itens tbody td{
+    padding: 8px 10px; border-bottom:1px solid var(--line); vertical-align:middle;
+  }
+  table.itens td.num{ width:36px; text-align:center; font-family:var(--mono); color:var(--ink-soft); font-size:12.5px; }
+  table.itens td.qtd{ width:90px; }
+  table.itens td.pont{ width:90px; }
+  table.itens td.obtida{ width:110px; }
+  table.itens td.obtida span{
+    font-family: var(--mono); font-weight:600; color: var(--green-900); font-size:14px;
+  }
+  table.itens td.rm{ width:36px; text-align:center; }
+  .rm-btn{
+    border:1px solid var(--line-strong); background:#fff; color:var(--danger);
+    width:26px; height:26px; border-radius:50%; cursor:pointer; font-size:13px; line-height:1;
+  }
+  .rm-btn:hover{ background: var(--danger-soft); border-color:var(--danger); }
+
+  .criterio-foot{
+    display:flex; justify-content:space-between; align-items:center; padding: 10px 16px;
+    background:#fbfcfa; border-top:1px solid var(--line);
+  }
+  .add-row-btn{
+    border:1px dashed var(--green-700); background:#fff; color: var(--green-800);
+    padding:6px 12px; border-radius: var(--radius); font-size:12.5px; font-weight:600; cursor:pointer;
+    font-family: var(--sans);
+  }
+  .add-row-btn:hover{ background: var(--green-100); }
+
+  /* total banner + declaration sentence */
+  .total-banner{
+    margin-top: 6px; border:1.5px solid var(--green-900); border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--green-900), var(--green-800));
+    color:#eef4ee; padding: 18px 22px; display:flex; align-items:center; gap:22px; flex-wrap:wrap;
+  }
+  .stamp{
+    width:74px; height:74px; border-radius:50%; border:2px solid var(--gold);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    flex-shrink:0; background: rgba(255,255,255,.04);
+    transform: rotate(-6deg);
+  }
+  .stamp .n{ font-family: var(--serif); font-weight:700; font-size:22px; color:#fff; line-height:1; }
+  .stamp .u{ font-family: var(--mono); font-size:8.5px; letter-spacing:.08em; color: var(--gold-soft); margin-top:2px; text-transform:uppercase; }
+  .sentence{ font-family: var(--serif); font-size:15.5px; line-height:1.6; flex:1; min-width:260px; }
+  .sentence b{ color:#fff; border-bottom:1.5px solid var(--gold); padding-bottom:1px; }
+
+  /* declaration checkboxes */
+  .decl-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+  .decl-item{
+    display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border:1px solid var(--line);
+    border-radius: var(--radius); background:#fbfcfa;
+  }
+  .decl-item input[type="checkbox"]{
+    margin-top:3px; width:17px; height:17px; accent-color: var(--green-800); flex-shrink:0; cursor:pointer;
+  }
+  .decl-item label{ font-size:13.8px; cursor:pointer; }
+  .decl-item.invalid{ border-color: var(--danger); background: var(--danger-soft); }
+
+  .sign-row{ display:flex; gap:24px; margin-top:22px; flex-wrap:wrap; }
+  .sign-block{ flex:1; min-width:240px; }
+  .sign-block .label{ font-size:12px; color:var(--ink-soft); margin-bottom:6px; }
+
+  /* action bar */
+  .actionbar{
+    display:flex; gap:12px; justify-content:flex-end; padding: 20px 36px 32px; flex-wrap:wrap;
+    border-top:1px solid var(--line); background:#fbfcfa;
+  }
+  .btn{
+    font-family: var(--sans); font-weight:600; font-size:13.5px; padding:11px 20px;
+    border-radius: var(--radius); cursor:pointer; border:1.5px solid transparent;
+  }
+  .btn-primary{ background: var(--green-800); color:#fff; }
+  .btn-primary:hover{ background: var(--green-900); }
+  .btn-ghost{ background:transparent; border-color: var(--line-strong); color: var(--ink-soft); }
+  .btn-ghost:hover{ border-color: var(--danger); color: var(--danger); }
+
+  .foot-note{
+    text-align:center; font-size:11.5px; color: var(--ink-soft); padding: 18px 20px 0;
+  }
+
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background: var(--ink); color:#fff; padding:12px 20px; border-radius:6px; font-size:13.5px;
+    opacity:0; pointer-events:none; transition: opacity .25s, transform .25s; z-index:50;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .toast.error{ background: var(--danger); }
+
+  @media print{
+    body{ background:#fff; padding:0; }
+    .sheet{ border:none; box-shadow:none; max-width:100%; }
+    .letterhead{ background:#fff !important; color:#000 !important; }
+    .letterhead::after{ display:none; }
+    .brand-text, .ref-tag, .doc-sub{ color:#333 !important; }
+    .doc-title{ color:#000; }
+    .add-row-btn, .rm-btn, .actionbar{ display:none !important; }
+    .total-banner{ background:#fff !important; color:#000 !important; border-color:#000; }
+    .stamp{ border-color:#000; background:#fff; }
+    .stamp .n, .stamp .u{ color:#000 !important; }
+    .sentence b{ color:#000; border-color:#000; }
+    input{ color:#000; }
+    .toast{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <header class="letterhead">
+    <div class="letterhead-top">
+      <div class="brand">
+        <div class="brand-mark">MEC</div>
+        <div class="brand-text">Ministério da Educação
+          <strong>Sistema Nacional de Reconhecimento e Certificação de Saberes</strong>
+        </div>
+      </div>
+      <div class="ref-tag">
+        PORTARIA MEC Nº 608<br>DE 7 DE JULHO DE 2026<br>
+        <a href="https://mecnormas.mec.gov.br/pesquisa/detalhar/13462" target="_blank" rel="noopener">mecnormas.mec.gov.br ↗</a>
+      </div>
+    </div>
+    <h1 class="doc-title">Requerimento de Reconhecimento de Saberes e Competências</h1>
+    <p class="doc-sub">Plano de Carreira dos Cargos Técnico-Administrativos em Educação — RSC-PCCTAE. Instrumento mínimo de instrução do processo, conforme Anexo da Portaria MEC nº 608/2026 (retificada em 15/07/2026).</p>
+  </header>
+
+  <form class="content" id="rscForm" novalidate>
+
+    <!-- SEÇÃO 1 -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">1</span>
+        <span class="section-title">Identificação do Servidor</span>
+      </div>
+      <table class="field-table">
+        <tr>
+          <td class="label">Nome</td>
+          <td><input type="text" id="nome" required></td>
+        </tr>
+        <tr>
+          <td class="label">Siape</td>
+          <td><input type="text" id="siape" inputmode="numeric" required></td>
+        </tr>
+        <tr>
+          <td class="label">Cargo</td>
+          <td><input type="text" id="cargo" required></td>
+        </tr>
+        <tr>
+          <td class="label">Data de ingresso na Instituição Federal de Ensino</td>
+          <td><input type="date" id="dataIngresso" required></td>
+        </tr>
+        <tr>
+          <td class="label">Nível de Classificação</td>
+          <td>
+            <div class="radio-row" id="nivelClassificacao">
+              <label><input type="radio" name="nivelClass" value="A"> A</label>
+              <label><input type="radio" name="nivelClass" value="B"> B</label>
+              <label><input type="radio" name="nivelClass" value="C"> C</label>
+              <label><input type="radio" name="nivelClass" value="D"> D</label>
+              <label><input type="radio" name="nivelClass" value="E"> E</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Lotação</td>
+          <td><input type="text" id="lotacao" required></td>
+        </tr>
+        <tr>
+          <td class="label">Função/Encargo (se houver)</td>
+          <td><input type="text" id="funcao"></td>
+        </tr>
+        <tr>
+          <td class="label">Telefone / E-mail</td>
+          <td><input type="text" id="contato" required></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- SEÇÃO 2 -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">2</span>
+        <span class="section-title">Informações do Requerimento</span>
+      </div>
+      <table class="field-table">
+        <tr>
+          <td class="label">Nível de RSC pretendido</td>
+          <td>
+            <div class="radio-row" id="nivelRSC">
+              <label><input type="radio" name="nivelRSC" value="RSC-I"> RSC-I</label>
+              <label><input type="radio" name="nivelRSC" value="RSC-II"> RSC-II</label>
+              <label><input type="radio" name="nivelRSC" value="RSC-III"> RSC-III</label>
+              <label><input type="radio" name="nivelRSC" value="RSC-IV"> RSC-IV</label>
+              <label><input type="radio" name="nivelRSC" value="RSC-V"> RSC-V</label>
+              <label><input type="radio" name="nivelRSC" value="RSC-VI"> RSC-VI</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Pontuação mínima necessária</td>
+          <td><input type="number" id="pontMinima" min="0" step="0.01"></td>
+        </tr>
+        <tr>
+          <td class="label">Pontuação total apresentada</td>
+          <td><input type="number" id="pontTotal" readonly tabindex="-1"></td>
+        </tr>
+        <tr>
+          <td class="label">Quantidade de critérios específicos utilizados</td>
+          <td><input type="number" id="qtdCriterios" readonly tabindex="-1"></td>
+        </tr>
+        <tr>
+          <td class="label">Pontuação total excedente (banco de pontos)</td>
+          <td><input type="number" id="pontExcedente" min="0" step="0.01"></td>
+        </tr>
+        <tr>
+          <td class="label">Saldo de pontuação de concessão anterior</td>
+          <td><input type="number" id="saldoAnterior" min="0" step="0.01"></td>
+        </tr>
+        <tr>
+          <td class="label">Nº do processo da concessão anterior do RSC-PCCTAE (se houver)</td>
+          <td><input type="text" id="processoAnterior"></td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- SEÇÃO 3 -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">3</span>
+        <span class="section-title">Descrição das Atividades por Requisito Legal</span>
+      </div>
+      <p class="section-note">Organize os itens conforme sua trajetória, contexto de atuação, principais funções e síntese das contribuições institucionais, de acordo com os incisos I a VI do art. 3º do Decreto nº 13.048/2026, vinculando cada atividade ao critério específico correspondente.</p>
+
+      <div id="criteriosContainer"></div>
+
+      <div class="total-banner">
+        <div class="stamp">
+          <span class="n" id="stampTotal">0</span>
+          <span class="u">pontos</span>
+        </div>
+        <p class="sentence">
+          À vista das informações apresentadas, totalizo <b id="sentTotal">0</b> pontos e atendo aos critérios legais e regulamentares para o nível <b id="sentNivel">____</b> do RSC-PCCTAE. Solicito a análise pela CRSC-PCCTAE.
+        </p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4 -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-num">4</span>
+        <span class="section-title">Declaração de Conformidade Legal</span>
+      </div>
+      <p class="section-note">Declaro, para os fins previstos no Decreto regulamentador do RSC-PCCTAE, que:</p>
+
+      <ul class="decl-list" id="declList">
+        <li class="decl-item">
+          <input type="checkbox" id="decl1" required>
+          <label for="decl1">I — Todos os fatos apresentados ocorreram no exercício do cargo;</label>
+        </li>
+        <li class="decl-item">
+          <input type="checkbox" id="decl2" required>
+          <label for="decl2">II — Nenhuma atividade aqui declarada foi utilizada em requerimentos anteriores;</label>
+        </li>
+        <li class="decl-item">
+          <input type="checkbox" id="decl3" required>
+          <label for="decl3">III — Toda a documentação anexada é autêntica e comprova integralmente as atividades apresentadas; e</label>
+        </li>
+        <li class="decl-item">
+          <input type="checkbox" id="decl4" required>
+          <label for="decl4">IV — Tenho ciência de que informações falsas implicam responsabilidade administrativa, civil e penal.</label>
+        </li>
+      </ul>
+
+      <div class="sign-row">
+        <div class="sign-block">
+          <div class="label">Assinatura (nome completo)</div>
+          <input type="text" id="assinatura" required>
+        </div>
+        <div class="sign-block" style="max-width:220px;">
+          <div class="label">Data</div>
+          <input type="date" id="dataAssinatura" required>
+        </div>
+      </div>
+    </section>
+
+  </form>
+
+  <div class="actionbar">
+    <button type="button" class="btn btn-ghost" id="btnLimpar">Limpar formulário</button>
+    <button type="button" class="btn btn-primary" id="btnImprimir">Gerar / Imprimir requerimento</button>
+  </div>
+
+  <p class="foot-note">Modelo conforme Anexo da Portaria MEC nº 608, de 7 de julho de 2026. Este formulário não substitui o texto publicado no Diário Oficial da União (DOU).</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var CRITERIOS = [
+    { id:"c1", numero:"I",   titulo:"Participação em grupos de trabalho, comissões, comitês, núcleos, representações ou similares" },
+    { id:"c2", numero:"II",  titulo:"Projetos institucionais, gestão, ensino, pesquisa, extensão, inovação ou assistência" },
+    { id:"c3", numero:"III", titulo:"Premiações e reconhecimentos públicos" },
+    { id:"c4", numero:"IV",  titulo:"Responsabilidades técnico-administrativas e/ou especializadas" },
+    { id:"c5", numero:"V",   titulo:"Funções ou cargos de direção e assessoramento institucional" },
+    { id:"c6", numero:"VI",  titulo:"Produção, prospecção e difusão de conhecimento" }
+  ];
+
+  var container = document.getElementById("criteriosContainer");
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+
+  function showToast(msg, isError){
+    toastEl.textContent = msg;
+    toastEl.className = "toast show" + (isError ? " error" : "");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.className = "toast"; }, 3200);
+  }
+
+  function fmt(n){
+    if (!isFinite(n)) n = 0;
+    return (Math.round(n * 100) / 100).toString().replace(".", ",");
+  }
+
+  function buildCriterioBlock(c){
+    var wrap = document.createElement("div");
+    wrap.className = "criterio";
+    wrap.dataset.id = c.id;
+    wrap.innerHTML =
+      '<div class="criterio-head">' +
+        '<span class="criterio-tag">Critério ' + c.numero + '</span>' +
+        '<span class="criterio-title">' + c.titulo + '</span>' +
+        '<span class="criterio-subtotal">Subtotal: <b class="subtotal-val">0</b> pts</span>' +
+      '</div>' +
+      '<div class="table-wrap">' +
+        '<table class="itens">' +
+          '<thead><tr>' +
+            '<th>Nº</th><th>Critério específico</th><th>Unidade de medida</th>' +
+            '<th>Pontuação</th><th>Pontuação obtida</th><th>Documentos comprobatórios</th><th></th>' +
+          '</tr></thead>' +
+          '<tbody></tbody>' +
+        '</table>' +
+      '</div>' +
+      '<div class="criterio-foot">' +
+        '<button type="button" class="add-row-btn">+ adicionar item</button>' +
+      '</div>';
+
+    var tbody = wrap.querySelector("tbody");
+    var addBtn = wrap.querySelector(".add-row-btn");
+
+    addBtn.addEventListener("click", function(){
+      addRow(tbody);
+      renumber(tbody);
+    });
+
+    addRow(tbody); // start with one row
+
+    return wrap;
+  }
+
+  function addRow(tbody){
+    var tr = document.createElement("tr");
+    tr.innerHTML =
+      '<td class="num">1</td>' +
+      '<td><input type="text" class="f-criterio" placeholder="Descreva a atividade"></td>' +
+      '<td class="qtd"><input type="number" class="f-unidade" min="0" step="0.01"></td>' +
+      '<td class="pont"><input type="number" class="f-pontuacao" min="0" step="0.01"></td>' +
+      '<td class="obtida"><span class="f-obtida">0</span></td>' +
+      '<td><input type="text" class="f-doc" placeholder="ex.: anexo 3"></td>' +
+      '<td class="rm"><button type="button" class="rm-btn" title="Remover item">✕</button></td>';
+    tbody.appendChild(tr);
+
+    tr.querySelector(".f-unidade").addEventListener("input", function(){ recalcRow(tr); });
+    tr.querySelector(".f-pontuacao").addEventListener("input", function(){ recalcRow(tr); });
+    tr.querySelector(".f-criterio").addEventListener("input", recalcAll);
+    tr.querySelector(".rm-btn").addEventListener("click", function(){
+      var t = tr.parentNode;
+      tr.remove();
+      if (t.children.length === 0) addRow(t);
+      renumber(t);
+      recalcAll();
+    });
+  }
+
+  function renumber(tbody){
+    var rows = tbody.querySelectorAll("tr");
+    rows.forEach(function(r, i){ r.querySelector(".num").textContent = (i + 1); });
+  }
+
+  function recalcRow(tr){
+    var u = parseFloat(tr.querySelector(".f-unidade").value) || 0;
+    var p = parseFloat(tr.querySelector(".f-pontuacao").value) || 0;
+    var obtida = u * p;
+    tr.querySelector(".f-obtida").textContent = fmt(obtida);
+    recalcAll();
+  }
+
+  function recalcAll(){
+    var grandTotal = 0;
+    var qtdCriterios = 0;
+
+    container.querySelectorAll(".criterio").forEach(function(block){
+      var subtotal = 0;
+      block.querySelectorAll("tbody tr").forEach(function(tr){
+        var u = parseFloat(tr.querySelector(".f-unidade").value) || 0;
+        var p = parseFloat(tr.querySelector(".f-pontuacao").value) || 0;
+        var desc = tr.querySelector(".f-criterio").value.trim();
+        subtotal += (u * p);
+        if (desc.length > 0) qtdCriterios++;
+      });
+      block.querySelector(".subtotal-val").textContent = fmt(subtotal);
+      grandTotal += subtotal;
+    });
+
+    document.getElementById("pontTotal").value = fmt(grandTotal);
+    document.getElementById("qtdCriterios").value = qtdCriterios;
+    document.getElementById("stampTotal").textContent = fmt(grandTotal);
+    document.getElementById("sentTotal").textContent = fmt(grandTotal);
+
+    var nivelSel = document.querySelector('input[name="nivelRSC"]:checked');
+    document.getElementById("sentNivel").textContent = nivelSel ? nivelSel.value : "____";
+  }
+
+  CRITERIOS.forEach(function(c){
+    container.appendChild(buildCriterioBlock(c));
+  });
+
+  document.querySelectorAll('input[name="nivelRSC"]').forEach(function(r){
+    r.addEventListener("change", recalcAll);
+  });
+
+  recalcAll();
+
+  // ---- Validation & print ----
+  function clearInvalid(){
+    document.querySelectorAll(".invalid").forEach(function(el){ el.classList.remove("invalid"); });
+  }
+
+  function validate(){
+    clearInvalid();
+    var ok = true;
+    var firstInvalid = null;
+
+    ["nome","siape","cargo","dataIngresso","lotacao","contato","assinatura","dataAssinatura"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el.value.trim()){
+        el.classList.add("invalid");
+        ok = false;
+        if (!firstInvalid) firstInvalid = el;
+      }
+    });
+
+    if (!document.querySelector('input[name="nivelClass"]:checked')){
+      ok = false;
+      showToast("Selecione o Nível de Classificação (1).", true);
+    }
+    if (!document.querySelector('input[name="nivelRSC"]:checked')){
+      ok = false;
+      showToast("Selecione o Nível de RSC pretendido (2).", true);
+    }
+
+    for (var i = 1; i <= 4; i++){
+      var cb = document.getElementById("decl" + i);
+      var item = cb.closest(".decl-item");
+      if (!cb.checked){
+        item.classList.add("invalid");
+        ok = false;
+      } else {
+        item.classList.remove("invalid");
+      }
+    }
+
+    if (firstInvalid) firstInvalid.focus();
+    return ok;
+  }
+
+  document.getElementById("btnImprimir").addEventListener("click", function(){
+    if (validate()){
+      window.print();
+    } else {
+      showToast("Preencha os campos obrigatórios e marque todas as declarações antes de gerar o requerimento.", true);
+    }
+  });
+
+  document.getElementById("btnLimpar").addEventListener("click", function(){
+    if (!confirm("Limpar todos os campos preenchidos neste formulário?")) return;
+    document.getElementById("rscForm").reset();
+    clearInvalid();
+    container.innerHTML = "";
+    CRITERIOS.forEach(function(c){ container.appendChild(buildCriterioBlock(c)); });
+    recalcAll();
+    showToast("Formulário limpo.");
+  });
+
+})();
+</script>
+
+</body>
+</html>
